@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Approval Required for {{ card_type }}</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Muli:wght@400;600&display=swap");
+
+            body {
+                font-family: "Muli", sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f8f9fc;
+                color: #333;
+                height: 100%;
+            }
+
+            .email-container {
+                display: flex;
+                max-width: 1200px;
+                margin: 20px auto;
+                background: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                overflow: hidden;
+                height: 100%;
+            }
+
+            /* Sidebar table styling */
+            #email-sidebar-table {
+                min-width: 250px;
+                max-width: 250px;
+                background-color: #0057b7;
+                color: #ffffff;
+            }
+
+            #email-sidebar-table {
+                width: 100%;
+                height: auto;
+                min-height: 100%;
+            }
+
+            .sidebar-logo {
+                padding: 30px 10px 20px;
+                text-align: center;
+            }
+
+            .sidebar-logo img {
+                max-width: 150px;
+                display: block;
+                margin: 0 auto 20px;
+            }
+
+            .sidebar-footer {
+                padding: 10px 10px 30px;
+                text-align: center;
+                font-size: 13px;
+                color: #ffffff;
+            }
+
+            .sidebar-footer a {
+                color: #ffffff;
+                text-decoration: underline;
+                margin: 0 4px;
+                font-size: 13px;
+            }
+
+            .email-sidebar img {
+                max-width: 150px;
+                margin-bottom: 20px;
+            }
+
+            .email-body {
+                flex: 1;
+                padding: 20px;
+            }
+
+            .email-body h1 {
+                font-size: 15px;
+                margin-bottom: 10px;
+                color: #54595f;
+            }
+
+            .email-body p {
+                font-size: 15px;
+                line-height: 1.5;
+                color: #54595f;
+            }
+
+            .email-body table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 20px 0;
+                text-align: left;
+            }
+
+            .email-body table th,
+            .email-body table td {
+                font-size: 15px;
+                padding: 10px;
+                border: 1px solid #ddd;
+            }
+
+            .email-body table th {
+                background-color: #f4f4f4;
+                font-weight: bold;
+            }
+
+            .email-body table tbody tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            .btn {
+                display: inline-block;
+                margin: 10px 0;
+                padding: 10px 20px;
+                background: #0057b7;
+                color: #ffffff !important;
+                text-decoration: none;
+                border-radius: 35px;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            .btn:hover {
+                color: #ffffff;
+                background: #009cbd;
+            }
+
+            .email-footer {
+                padding: 15px;
+                text-align: center;
+                font-size: 15px;
+                color: #777;
+                background: #f1f1f1;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="email-container">
+            <table
+                role="presentation"
+                cellpadding="0"
+                cellspacing="0"
+                border="0"
+                id="email-sidebar-table"
+            >
+                <tr>
+                    <td class="sidebar-logo">
+                        <img
+                            src="https://staging-sharemundo.s3.eu-west-3.amazonaws.com/Logo+Links+White+Background+(1).png"
+                            alt="sharemundo Logo"
+                        />
+                    </td>
+                </tr>
+                <tr>
+                    <td height="100%">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="sidebar-footer">
+                        <a
+                            href="https://sharemundo.com/cgv-terms-conditions-sharemundolinks/"
+                            target="_blank"
+                            >Terms of Use</a
+                        >
+                        |
+                        <a
+                            href="https://sharemundo.com/protection-donnees-sharemundolinks/"
+                            target="_blank"
+                            >Privacy Policy</a
+                        >
+                    </td>
+                </tr>
+            </table>
+
+            <div class="email-body">
+                <h1>Dear {{ assignee }},</h1>
+                <p>
+                    A new <strong>{{ card_type }}</strong> has been submitted
+                    and requires your review and approval. Below are the
+                    details:
+                </p>
+
+                <table>
+                    <tr>
+                        <th>Name</th>
+                        <td>{{ card_name }}</td>
+                    </tr>
+                    <tr>
+                        <th>Submitted By</th>
+                        <td>{{ submitted_by }}</td>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <td>{{ created_at }}</td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td>{{ description }}</td>
+                    </tr>
+
+                    {% if milestone_name %}
+                    <tr>
+                        <th>Milestone</th>
+                        <td>{{ milestone_name }}</td>
+                    </tr>
+                    {% endif %} {% if action_item_name %}
+                    <tr>
+                        <th>Action Item</th>
+                        <td>{{ action_item_name }}</td>
+                    </tr>
+                    {% endif %} {% if card_type == "Time Card" and hours %}
+                    <tr>
+                        <th>Hours</th>
+                        <td>{{ hours }}</td>
+                    </tr>
+                    {% elif card_type == "Expense Card" %}
+                    <tr>
+                        <th>Category</th>
+                        <td>{{ category }}</td>
+                    </tr>
+                    <tr>
+                        <th>Rate</th>
+                        <td>{{ rate }}</td>
+                    </tr>
+                    <tr>
+                        <th>Quantity</th>
+                        <td>{{ quantity }}</td>
+                    </tr>
+                    <tr>
+                        <th>Total</th>
+                        <td>{{ total }}</td>
+                    </tr>
+                    {% endif %}
+                </table>
+
+                <p>
+                    Please log in to the system to review and approve this card.
+                </p>
+                <p>
+                    <a href="{{ frontend_url }}" class="btn"
+                        >View {{ card_type }}</a
+                    >
+                </p>
+                <p>
+                    If you have already taken action, please disregard this
+                    email.
+                </p>
+
+                <div class="email-footer">
+                    Best regards,<br />
+                    <strong>sharemundo team</strong>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
