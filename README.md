@@ -13,6 +13,18 @@ This guide walks you through configuring and running a simple Python script to s
 
 ---
 
+### 🔐 Generating a Gmail App Password
+
+Before you start, you need a secure App Password to authenticate with Gmail. Follow these steps:
+
+1. **Sign in to your Google Account** at [https://myaccount.google.com](https://myaccount.google.com).
+2. Navigate to **Security** in the left sidebar.
+3. Under **"Signing in to Google,"** enable **2-Step Verification** if you haven’t already.
+4. Once 2-Step Verification is active, click **App passwords**.
+5. Select **Mail** as the app and **Other (Custom name)** for the device, e.g., `PythonMailer`.
+6. Click **Generate** and copy the 16‑character App Password.
+7. Store this value in your `.env` under `APP_PASSWORD`.
+
 ### 🔑 Configuration Flow
 
 1. **Clone or download** this repository to your local machine.
