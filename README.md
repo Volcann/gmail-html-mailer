@@ -1,6 +1,21 @@
-# gmail-template-tester
+<h1 align="center">
+  🚀 Gmail Template Tester
+</h1>
+<h4 align="center">
+  The fastest way to test, visualize, and finalize your HTML email templates.
+</h4>
 
-> **The fastest way to test, visualize, and finalize your HTML email templates.**
+<p align="center">
+  <a href="#license">
+    <img alt="License" src="https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge&color=B5E8E0&logoColor=D9E0EE&labelColor=302D41">
+  </a>
+  <a href="https://github.com/Mohsin/gmail-template-tester/stargazers">
+    <img alt="Stargazers" src="https://img.shields.io/github/stars/Mohsin/gmail-template-tester?style=for-the-badge&logo=starship&color=B5E8E0&logoColor=D9E0EE&labelColor=302D41">
+  </a>
+  <a href="https://github.com/Mohsin/gmail-template-tester/graphs/contributors">
+    <img alt="Contributors" src="https://img.shields.io/github/contributors/Mohsin/gmail-template-tester?style=for-the-badge&logo=gitbook&color=B5E8E0&logoColor=D9E0EE&labelColor=302D41">
+  </a>
+</p><br>
 
 Stop wasting time triggering complex user flows just to see how a transactional email looks in your inbox. `gmail-template-tester` is an automated script that parses your Jinja2-style HTML templates, intelligently mocks the required data, and dispatches the final renders straight to your Gmail account — covering every conditional branch automatically.
 
