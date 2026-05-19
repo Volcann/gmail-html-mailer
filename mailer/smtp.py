@@ -1,6 +1,9 @@
 import smtplib
-from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
+_SMTP_HOST = "smtp.gmail.com"
+_SMTP_PORT = 587
 
 
 def send_email(
@@ -10,7 +13,7 @@ def send_email(
     subject: str,
     html_body: str,
     dry_run: bool = False,
-):
+) -> None:
     if dry_run:
         return
 
@@ -20,7 +23,7 @@ def send_email(
     msg["To"] = receiver
     msg.attach(MIMEText(html_body, "html", _charset="utf-8"))
 
-    with smtplib.SMTP("smtp.gmail.com", 587) as server:
+    with smtplib.SMTP(_SMTP_HOST, _SMTP_PORT) as server:
         server.ehlo()
         server.starttls()
         server.login(sender, app_password)
